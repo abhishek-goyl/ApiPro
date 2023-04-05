@@ -1,0 +1,16 @@
+# ignore ALL .log files
+*.log
+*.bak
+*.user
+
+# ignore ALL files in ANY directory named temp
+.vs/
+temp/
+packages/
+bin/
+Debug/
+Release/
+Obj/
+log/
+Log/
+Logs/

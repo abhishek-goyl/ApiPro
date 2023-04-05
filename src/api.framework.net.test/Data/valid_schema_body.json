@@ -1,0 +1,76 @@
+{
+  "name": "Nippon Open APIs",
+  "endpoints": [
+    {
+      "tag": "kpi",
+      "version": "v1",
+      "summary": "test",
+      "scope": "",
+      "verb": "POST",
+      "name": "",
+      "route": "/api/{version}/{tag}",
+      "path": "/api/v1/kpi",
+      "inputs": [
+        {
+          "name": "pageno",
+          "type": "string",
+          "source": "body",
+          "description": "client name who is calling api."
+        },
+        {
+          "name": "pagesize",
+          "type": "string",
+          "source": "body",
+          "description": "client name who is calling api."
+        }
+      ],
+      "operations": [
+        {
+          "order": 1,
+          "db": "Trends",
+          "type": "sp",
+          "value": "sproc_UserTimeWrapper",
+          "inputs": [
+            {
+              "source": "authClaim",
+              "mapId": "1",
+              "name": "RootOrganizationId",
+              "type": "SmallInt"
+            }
+          ],
+          "output": {
+            "Data": [ "Date", "UserEmailId", "GroupName", "EffortHrs" ]
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "schema": { "$ref": "#/definitions/UserTimeList" }
+        },
+        "206": {
+          "description": "Partial Content",
+          "schema": { "$ref": "#/definitions/UserTimeListPartialList" }
+        },
+        "400": {
+          "description": "Bad Request",
+          "schema": {
+            "$ref": "#/definitions/errors"
+          }
+        },
+        "404": {
+          "description": "Not Found",
+          "schema": {
+            "$ref": "#/definitions/error"
+          }
+        },
+        "401": {
+          "description": "Un Authorized",
+          "schema": {
+            "$ref": "#/definitions/error"
+          }
+        }
+      }
+    }
+  ]
+}

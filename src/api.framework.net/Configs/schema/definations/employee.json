@@ -1,0 +1,31 @@
+{
+  "Employee": {
+    "type": "object",
+    "properties": {
+      "Name": {
+        "type": "string",
+        "example": "Abhishek Goel"
+      },
+      "Designation": {
+        "type": "string",
+        "example": "Software Enginner"
+      },
+      "EmailId": {
+        "type": "string",
+        "example": "abhishek-goel@hcl.com"
+      },
+      "JoiningDate": {
+        "type": "string",
+        "example": "13-05-2022"
+      },
+      "ProjectCode": {
+        "type": "string",
+        "example": "ERS"
+      },
+      "ManagerId": {
+        "type": "number",
+        "example": "123456"
+      }
+    }
+  }
+}

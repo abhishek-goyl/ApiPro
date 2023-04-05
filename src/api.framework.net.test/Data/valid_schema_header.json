@@ -1,0 +1,169 @@
+﻿{
+  "name": "Nippon Open APIs",
+  "endpoints": [
+    {
+  "tag": "organization",
+  "version": "v2",
+  "summary": "get user time",
+  "scope": "users:time:read",
+  "verb": "GET",
+  "name": "tree",
+  "route": "",
+  "inputs": [
+    {
+      "name": "id",
+      "type": "string",
+      "source": "header",
+      "description": "client name who is calling api."
+    }
+  ],
+  "operations": [
+    {
+      "order": 1,
+      "db": "Trends",
+      "type": "sp",
+      "value": "sproc_UserTimeWrapper",
+      "inputs": [
+        {
+          "source": "authClaim",
+          "mapId": "1",
+          "name": "RootOrganizationId",
+          "type": "SmallInt"
+        },
+        {
+          "source": "authClaim",
+          "mapId": "2",
+          "name": "HighestNodeUniqueId",
+          "type": "NVarChar"
+        },
+        {
+          "source": "client",
+          "mapId": "3",
+          "name": "UserEmailIdList",
+          "type": "NVarChar"
+        },
+        {
+          "source": "client",
+          "mapId": "4",
+          "name": "TrendType",
+          "type": "SmallInt"
+        },
+        {
+          "source": "client",
+          "mapId": "5",
+          "name": "Frequency",
+          "type": "SmallInt"
+        },
+        {
+          "source": "client",
+          "mapId": "9",
+          "name": "StartDate",
+          "type": "DATE"
+        },
+        {
+          "source": "client",
+          "mapId": "10",
+          "name": "EndDate",
+          "type": "DATE"
+        },
+        {
+          "source": "client",
+          "mapId": "6",
+          "name": "ComputeMethod",
+          "type": "SmallInt"
+        },
+        {
+          "source": "client",
+          "mapId": "11",
+          "name": "IsShift",
+          "type": "Bit"
+        },
+        {
+          "source": "client",
+          "mapId": "12",
+          "name": "IsOnlineOffline",
+          "type": "Bit"
+        },
+        {
+          "source": "client",
+          "mapId": "13",
+          "name": "ExcludeManager",
+          "type": "Bit"
+        },
+        {
+          "source": "client",
+          "mapId": "14",
+          "name": "IncludeVacation",
+          "type": "Bit"
+        },
+        {
+          "source": "client",
+          "mapId": "15",
+          "name": "RollingWeekend",
+          "type": "Bit"
+        },
+        {
+          "source": "client",
+          "mapId": "8",
+          "name": "PageSize",
+          "type": "SmallInt"
+        },
+        {
+          "source": "client",
+          "mapId": "7",
+          "name": "PageNo",
+          "type": "SmallInt"
+        }
+      ],
+      "output": {
+        "Data": [ "Date", "UserEmailId", "GroupName", "EffortHrs" ],
+        "Stats": [ "RecordCount" ],
+        "Errors": [ "ErrorCode", "ErrorMessage" ]
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "schema": { "$ref": "#/definitions/UserTimeList" },
+      "headers": {
+        "X-TotalRecordsCount": {
+          "type": "integer",
+          "description": "total records for the request",
+          "map": "stats[0].recordCount"
+        }
+      }
+    },
+    "206": {
+      "description": "Partial Content",
+      "schema": { "$ref": "#/definitions/UserTimeListPartialList" },
+      "headers": {
+        "X-TotalRecordsCount": {
+          "type": "integer",
+          "description": "specify the total available records for the request",
+          "map": "stats[0].recordCount"
+        }
+      }
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/definitions/errors"
+      }
+    },
+    "404": {
+      "description": "Not Found",
+      "schema": {
+        "$ref": "#/definitions/error"
+      }
+    },
+    "401": {
+      "description": "Un Authorized",
+      "schema": {
+        "$ref": "#/definitions/error"
+      }
+    }
+  }
+}
+  ]
+}

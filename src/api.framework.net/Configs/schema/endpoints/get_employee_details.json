@@ -1,0 +1,72 @@
+{
+  "tag": "employees",
+  "version": "v1",
+  "summary": "get employee's detail for given employee id",
+  "scope": "employees:read",
+  "verb": "GET",
+  "name": "",
+  "route": "/api/{version}/{tag}/{EmployeeId}",
+  "path": "/api/v1/employees/{EmployeeId}",
+  "inputs": [
+    {
+      "id": 1,
+      "name": "traceId",
+      "type": "string",
+      "source": "header",
+      "description": "unique request id."
+    },
+    {
+      "id": 2,
+      "name": "EmployeeId",
+      "type": "string",
+      "source": "path",
+      "description": "employee unique id",
+      "validations": [
+        {
+          "type": "regex",
+          "regex": "^[0-9]*$",
+          "error": "Employee Id {0} is not valid. Please provide valid Employee ID for further processing.",
+          "errorCode": "InvalidEmployeeId"
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "order": 1,
+      "db": "ApplicationDb",
+      "type": "sp",
+      "value": "sp_GetEmployeeDetails",
+      "inputs": [
+        {
+          "source": "client",
+          "mapId": "2",
+          "name": "Id",
+          "type": "BIGINT"
+        }
+      ],
+      "output": {
+        "Data": [ "Name", "Designation", "EmailId", "JoiningDate", "ProjectCode", "ManagerId" ],
+        "Errors": [ "ErrorCode", "ErrorMessage" ]
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "schema": { "$ref": "#/definitions/Employee" }
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": { "$ref": "#/definitions/error" }
+    },
+    "404": {
+      "description": "Not Found",
+      "schema": { "$ref": "#/definitions/error" }
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": { "$ref": "#/definitions/error" }
+    }
+  }
+}

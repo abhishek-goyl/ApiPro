@@ -1,0 +1,104 @@
+﻿{
+  "name": "Nippon Open APIs",
+  "endpoints": [
+    {
+      "tag": "organization",
+      "version": "v2",
+      "summary": "This endpoint will provide the matrix organizations for the given root organization id",
+      "scope": [ "sap", "toscana" ],
+      "verb": "GET",
+      "name": "Tree",
+      "route": "/{id}",
+      "inputs": [
+        {
+          "id": 1,
+          "name": "id",
+          "type": "int",
+          "regex": "^[0-9]*$",
+          "optional": false,
+          "defaultValue": "",
+          "comment": "it is organizations root id",
+          "source": "path",
+          "errors": {
+            "mandatory": "Please provide the root organization id",
+            "invalid": "Please provice a valid root organization id"
+          },
+          "customValidation": ""
+        }
+      ],
+      "operations": [
+        {
+          "order": 1,
+          "connection": "registry_connection_string",
+          "type": "sp",
+          "value": "sproc_GetOrgTrees",
+          "inputs": [
+            {
+              "source": "client",
+              "mapId": "1",
+              "name": "RootOrganizationId",
+              "type": "SmallInt",
+              "allowMultiple": false
+            }
+          ],
+          "output": {
+            "OrgTree": [ "RootNodeId", "MatrixOrgName" ]
+          },
+          "error": {
+            "500": "E_1"
+          }
+        },
+        {
+          "order": 2,
+          "connection": "registry_connection_string",
+          "type": "sp",
+          "value": "sproc_GetOrgTrees",
+          "inputs": [
+            {
+              "source": "data",
+              "mapId": "operation1.OrgTree.RootNodeId",
+              "name": "RootOrganizationId",
+              "type": "SmallInt",
+              "allowMultiple": false
+            }
+          ],
+          "output": {
+            "OrgTree": [ "RootNodeId", "MatrixOrgName" ]
+          },
+          "error": {
+            "500": "E_1"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "schema": { "$ref": "#/definitions/OrgTree" },
+          "examples": {
+            "id": 0,
+            "name": "tset"
+          }
+        },
+
+        "400": {
+          "description": "OK",
+          "schema": {
+            "$ref": "#/definitions/error"
+          }
+        },
+        "404": {
+          "description": "OK",
+          "schema": {
+            "$ref": "#/definitions/error"
+          }
+        },
+        "401": {
+          "description": "OK",
+          "schema": {
+            "$ref": "#/definitions/error"
+          }
+        }
+      }
+    }
+  ]
+}

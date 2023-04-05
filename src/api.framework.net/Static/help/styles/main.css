@@ -1,0 +1,39 @@
+﻿body {
+    
+    width: 98%;
+    margin: auto;
+}
+
+div.header {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 5px;
+    border-bottom: 5px solid darkblue;
+}
+
+label.heading {
+    font-size: 20pt;
+}
+
+label.code{
+    font-size: 10pt;
+    color: blue;
+}
+
+div.para {
+    padding: 15px 0px;
+    font-weight: normal;
+    font-size: 12pt;
+    color: black;
+}
+
+div.codepara {
+    margin: 0px 0px;
+    width: auto;
+    padding: 0px;
+    font-weight: normal;
+    font-size: 9pt;
+    font-style:italic;
+    color: black;
+    border: 1px solid black;
+    background-color:floralwhite;
+}

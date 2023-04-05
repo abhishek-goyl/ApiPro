@@ -1,0 +1,24 @@
+﻿{
+  "name": "Employee APIs",
+  "schemes": [ "https" ],
+  "endpoints": [
+  ],
+  "definations": {
+    "errors": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/error" }
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "errorCode": { "type": "string" },
+        "errorMessage": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <div class="header">
+        <label class="heading">No-Code Web API Framework</label>
+    </div>
+    <div class="para">
+        This framework is designed for reducing the development efforts for web APIs. The framework has following inbuilt features, that can be controlled only by configurations.
+        <ul>
+            <li>Develop the GET endpoints with just writing a JSON file in a predefined format.</li>
+            <li>Automatic swagger documentation will be generated on the fly.</li>
+            <li>Detailed logging and tracing with request and trace ids.</li>
+            <li>It provide a health check URL, which can be used for health probe in load balancers.</li>
+            <li>Capability to integrate your API endpoint with SQL as backend by just simple configuration.</li>
+            <li>Capability of writing APIs with multiple backend operations.</li>
+            <li>Capability to write almost all types of input validations with configuration.</li>
+            <li>Capability to add custom validation by writing a code function and integrating into API with configuration.</li>
+            <li>Capability to add a coded backend where you can write any code and integrate with a API endpoint.</li>
+            <li>Capability to mock the SQL Backend, so that API will work with dummy mock data.</li>
+        </ul>
+    </div>
+    <div class="para">
+        Root configuration structure.
+    </div>
+    <div class="codepara">
+        <pre>
+            {
+                "name": "Nippon Open APIs",
+                "schemes": [ "https" ],
+                "endpoints": [
+                ],
+                "definations": {
+   
+                }
+            }</pre>
+    </div>
+    <embed src="./endpoint.html">
+</body>
+</html>
