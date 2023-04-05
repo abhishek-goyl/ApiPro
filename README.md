@@ -42,14 +42,14 @@ Framework provide a health monitor URL, which gives you current version of the A
 It is available at the application root URL:
 http://localhost:23450
 
-![Output](https://github.com/contact2abhi/ApiPro/blob/main/public/output.PNG)
+![Output](https://github.com/abhishek-goyl/ApiPro/blob/main/public/output.PNG)
 
 ## Inbuilt Swagger documentation
 
 Framework provide the read only, dynamic swagger documentation for all configured endpoints. That can be accessed by browsing the following local URL:
 http://localhost:23450/swagger
 
-![Output](https://github.com/contact2abhi/ApiPro/blob/main/public/swagger.PNG)
+![Output](https://github.com/abhishek-goyl/ApiPro/blob/main/public/swagger.PNG)
 
 ### Note: 
 The Employee API you see on running it first time, is just a dummy endpoint for DEMO purpose. To clean up this endpoint, you have to remove the following files:
@@ -92,7 +92,7 @@ It reads all the endpoints and schemas defined in configuration section of prese
 
 # High Level Design
 
-![Logical structure](https://github.com/contact2abhi/ApiPro/blob/main/public/high_level_design.png)
+![Logical structure](https://github.com/abhishek-goyl/ApiPro/blob/main/public/high_level_design.png)
 
 
 ## Define Endpoints
@@ -237,7 +237,7 @@ Sample Schema:
 
 ## Further Help
 
-To get more help on defining the endpoints in the framework. [Click Here](https://github.com/contact2abhi/ApiPro/blob/main/DEVELOPER_GUIDE.md)
+To get more help on defining the endpoints in the framework. [Click Here](https://github.com/abhishek-goyl/ApiPro/blob/main/DEVELOPER_GUIDE.md)
 
 ## License
 
